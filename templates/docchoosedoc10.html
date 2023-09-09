@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style6.css') }}">
+
+</head>
+
+<body>
+
+  <nav id="navbar1">
+    <ul>
+      <li><a href="/">HOME</a></li>
+      <li><a href="/dochospital">HOSPITAL</a></li>
+      <li><a href="/login">DOCTOR</a></li>
+      <li><a href="/plogin">PATIENT</a></li>
+  </nav>
+
+  {% with messages=get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <p id="p1">{{ message }} </p>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div>
+
+    <button id="adddoc" onclick="popup()">ADD</button>
+
+  </div>
+
+  <header id="myform">
+    <div class="box1">
+
+      <button id="b1" onclick="closepopup()">x</button>
+
+      <form action="/docchoosedoc/<int:id>" method="POST" class="box2">
+
+        <h3>REGISTRATION</h3>
+
+        <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="dname" name="dname" placeholder="DOCTOR NAME" required><br>
+        <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="gender" name="gender" placeholder="GENDER" required><br>
+        <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="specialization" name="specialization" placeholder="SPECIALIZATION"
+          required><br>
+        <input class="inp" type="number" id="age" name="age" placeholder="AGE" required><br>
+        <input class="inp" type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" placeholder="PHONE NUMBER"
+          required><br>
+        <input class="inp" type="number" id="fd_hid" required name="fd_hid" placeholder="HOSPITAL ID" value={{id}} ><br>
+        <a href="/docchoosedoc/{{fd_hid}} "><button id="log">REGISTER</button></a>
+
+      </form>
+    </div>
+  </header>
+
+  <table id="customers">
+    <tr>
+      <th>DOCTORID</th>
+      <th>DOCTOR NAME</th>
+      <th>GENDER</th>
+      <th>SPECIALIZATION</th>
+      <th>AGE</th>
+      <th>PHONE NUMBER</th>
+      <th>BOOK</th>
+
+
+    </tr>
+
+    {% for item in query %}
+
+    <tr>
+      <td> {{item.id}} </td>
+      <td> {{item.dname}} </td>
+      <td> {{item.gender}} </td>
+      <td> {{item.specialization}} </td>
+      <td> {{item.age}} </td>
+      <td> {{item.phno}} </td>
+
+
+      <td><a href="/book/{{item.id}} "><button id="but1">BOOK</button></a></td>
+
+
+    </tr>
+    {% endfor %}
+  </table>
+  <script>
+    let doctor = document.getElementById("myform");
+    let blue = document.getElementById("customers");
+    let blue1 = document.getElementById("navbar1");
+    let blue2 = document.getElementById("adddoc");
+    function popup() {
+      doctor.classList.add("open")
+      blue.classList.add("active-popup")
+      blue1.classList.add("active-popup")
+      blue2.classList.add("active-popup")
+    }
+    function closepopup() {
+      doctor.classList.remove("open")
+      blue.classList.remove("active-popup")
+      blue1.classList.remove("active-popup")
+      blue2.classList.remove("active-popup")
+    }
+  </script>
+</body>
+
+</html>

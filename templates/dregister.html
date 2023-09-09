@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style9.css') }}">
+
+</head>
+<body>
+    <nav>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/hospital">HOSPITAL</a></li>
+          <li><a href="/login">DOCTOR</a></li>
+          <li><a href="/dlogin">PATIENT</a></li>
+    
+        </ul>
+    </nav>
+      
+    <div class="box1">
+
+    <form action="/dregister" method="POST" class="box2">
+    <h2>REGISTRATION</h2>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <h2>{{ message }}</h2>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="dname" name="dname" placeholder="DOCTOR NAME" required><br>
+        <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="gender" name="gender" placeholder="GENDER" required><br>
+        <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="specialization" name="specialization" placeholder="SPECIALIZATION" required><br>
+        <input type="number" id="age" name="age" placeholder="AGE"><br>
+        <input type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" placeholder="PHONE NUMBER" required><br>
+        <input type="number" id="fd_hid" name="fd_hid" placeholder="HOSPITAL ID" required><br>
+        
+         
+
+        <input type="submit" value="REGISTER" id="log">
+    <p>already a member? <a href="/">LOGIN</a> </p>
+
+    </form>
+</div>
+
+</body>
+</html>

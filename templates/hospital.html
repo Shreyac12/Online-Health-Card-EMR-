@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style12.css') }}">
+
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/phome">HOME</a></li>
+      <li><a href="/pprofile">PROFILE</a></li>
+      <li><a href="/hospital">BOOK</a></li>
+      <li><a href="/history">APPOINTMENTS</a></li>
+      <li><a href="/medical">MEDICAL RECORDS</a></li>
+      <li id="out"><a href="/logout" id="aout">LOGOUT</a></li>
+
+    </ul>
+  </nav>
+
+  <table id="customers">
+    <tr>
+      <th>id</th>
+      <th>HOSPITAL NAME</th>
+      <th>ADDRESS</th>
+      <th>CITY</th>
+      <th>DOCTORS</th>
+
+    </tr>
+
+    {% for item in query %}
+
+    <tr>
+      <td> {{item.id}} </td>
+      <td> {{item.hname}} </td>
+      <td> {{item.haddress}} </td>
+      <td> {{item.city}} </td>
+      <td><a href="/choosedoc/{{item.id}} "><button id="log">VIEW DOCTORS</button></a></td>
+    </tr>
+
+    {% endfor %}
+  </table>
+</body>
+
+</html>

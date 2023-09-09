@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/dhome">HOME</a></li>
+      <li><a href="/dprofile">PROFILE</a></li>
+      <li><a href="/appointments">APPOINTMENTS</a></li>
+      <li><a href="/patientrecord">PATIENT RECORDS</a></li>
+      <li id="out"><a href="/logout" id="aout">LOGOUT</a></li> 
+    </ul>
+  </nav>
+
+  <table id="customers">
+    <tr>
+      <th>APPT ID</th>
+      <th>DATE</th>
+      <th>TIME</th>
+      <th>PATIENT ID</th>
+      <!-- <th>DOCTORID</th> -->
+      <th>PATIENT NAME</th>
+
+
+
+    </tr>
+
+    {% for item in query %}
+
+    <tr>
+      <td> {{item.apptid}} </td>
+      <td> {{item.time}} </td>
+      <td> {{item.date}} </td>
+      <td> {{item.fa_pid}} </td>
+      <!-- <td> {{item.fa_did}} </td> -->
+      <td> {{item.name}} </td>
+      <!-- <td> {{item.id}} </td> -->
+
+
+    </tr>
+
+    {% endfor %}
+  </table>
+</body>
+
+</html>

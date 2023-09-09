@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/phome">HOME</a></li>
+            <li><a href="/pprofile">PROFILE</a></li>
+            <li><a href="/hospital">BOOK</a></li>
+            <li><a href="/history">APPOINTMENTS</a></li>
+            <li><a href="/medical">MEDICAL RECORDS</a></li> 
+            <li id="out"><a href="/logout" id="aout">LOGOUT</a></li> 
+ 
+
+        </ul>
+    </nav>
+    
+    <div class="box1">
+    <form action="/book/<int:id>" method="POST" class="box2">
+<h2>Appointment booking</h2>
+        <input type="date" name="date" placeholder="ENTER THE DATE" id="date" required><br>
+        <input type="time" name="time" placeholder="ENTER THE TIME" required><br>
+        <input type="number" name="fa_pid" placeholder="ENTER PATIENT ID" value={{patient}} required><br>
+        <input type="number" name="fa_did" placeholder="ENTER DOCTOR ID" value={{id}} required><br><br>
+        <input  type="submit" id="log">
+    
+    </form>
+</div>
+
+<script>
+    
+    let date= new Date();
+    let tdate = date.getDate();
+    if (tdate<10){
+        tdate = "0" + tdate;
+    }
+    console.log(tdate)
+    let tmonth = date.getMonth()+1;
+    if (tmonth<10){
+        tmonth = "0" + tmonth;
+    }
+    console.log(tmonth)
+    let tyear = date.getUTCFullYear();
+    console.log(tyear)
+   
+    let mindate= tyear + "-" + tmonth + "-" + tdate;
+    document.getElementById("date").setAttribute('min',mindate)
+    console.log(mindate)
+
+</script>
+
+</body>
+</html>

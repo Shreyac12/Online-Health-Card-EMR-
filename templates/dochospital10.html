@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSPITAL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style7.css') }}">
+
+</head>
+<body>
+    <div class="box">
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                 <li><a href="/dochospital">HOSPITAL</a></li> 
+                 <li><a href="/login">DOCTOR</a></li>
+                 <li><a href="/plogin">PATIENT</a></li> 
+               
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <table id="customers">
+        <tr>
+            <th>id</th>
+            <th>HOSPITAL NAME</th>
+            <th>ADDRESS</th>
+            <th>CITY</th>
+            <th>DOCTORS</th>
+    
+        </tr>
+    
+        {% for item in query %}
+    
+        <tr>
+            <td> {{item.id}} </td>
+            <td> {{item.hname}} </td>
+            <td> {{item.haddress}} </td>
+            <td> {{item.city}} </td>
+            
+            <td><a href="/docchoosedoc/{{item.id}} "><button id="log">VIEW DOCTORS</button></a></td>
+        </tr>
+    
+        {% endfor %}
+    </table>
+    <script>
+        let patient=document.getElementById("patform");
+        let doctor=document.getElementById("docform");
+        function pat(){
+            doctor.classList.remove("open")
+          patient.classList.add("open")
+        }
+        function closepopup(){
+          patient.classList.remove("open")
+        }
+        function doc(){
+           patient.classList.remove("open")  
+          doctor.classList.add("open")
+        }
+        function closepopup(){
+          doctor.classList.remove("open")
+        }
+      </script>
+</body>
+</html>
+
+
+
+
+

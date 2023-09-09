@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
+</head>
+
+<body>
+  
+  <nav>
+    <ul>
+      <li><a href="/phome">HOME</a></li>
+      <li><a href="/pprofile">PROFILE</a></li>
+      <li><a href="/hospital">BOOK</a></li>
+      <li><a href="/history">APPOINTMENTS</a></li>
+      <li><a href="/medical">MEDICAL RECORDS</a></li>
+      <li id="out"><a href="/logout" id="aout">LOGOUT</a></li> 
+
+    </ul>
+  </nav> 
+
+  <table id="customers">
+    <tr>
+      <th>DOCTORID</th>
+      <th>DOCTOR NAME</th>
+      <th>GENDER</th>
+      <th>SPECIALIZATION</th>
+      <th>AGE</th>
+      <th>PHONE NUMBER</th>
+      <th>BOOK</th>
+
+    </tr>
+
+    {% for item in query %}
+
+    <tr>
+      <td> {{item.id}} </td>
+      <td> {{item.dname}} </td>
+      <td> {{item.gender}} </td>
+      <td> {{item.specialization}} </td>
+      <td> {{item.age}} </td>
+      <td> {{item.phno}} </td>
+
+     
+      <td><a href="/book/{{item.id}} "><button id="but1">BOOK</button></a></td>
+     
+      
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+
+</html>

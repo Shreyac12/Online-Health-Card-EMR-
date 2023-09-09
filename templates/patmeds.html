@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style14.css') }}">
+
+</head>
+<body>
+    
+  <nav>
+    <ul>
+        <li><a href="/phome">HOME</a></li>
+        <li><a href="/pprofile">PROFILE</a></li>
+        <li><a href="/hospital">BOOK</a></li>
+        <li><a href="/history">APPOINTMENTS</a></li>
+        <li><a href="/medical">MEDICAL RECORDS</a></li> 
+        <li id="out"><a href="/logout" id="aout">LOGOUT</a></li> 
+
+
+    </ul>
+</nav>
+
+  <table id="customers">
+    <tr>
+      <th>MRID</th>
+      <th>DRUGS</th>
+      <th>DATE</th>
+      <th>REFER</th>
+      <th>DIAGNOSIS</th>
+      
+   
+    </tr>
+
+    {% for item in query %}
+        
+    <tr>
+      <td> {{item.mrid}} </td>
+      <td> {{item.drugs}} </td>
+      <td> {{item.date}} </td>
+      <td> {{item.disease}} </td>
+      <td> {{item.diagnosis}} </td>
+      
+    </tr>
+
+{% endfor %}
+
+</body>
+</html>

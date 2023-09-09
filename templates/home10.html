@@ -1,0 +1,77 @@
+{% extends 'base10.html' %}
+
+
+
+{% block title %}
+
+
+HOME
+{% endblock title %}
+
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style11.css') }}">
+
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+
+<p id="p1">{{ message }} <button id="bt9" onclick="closepopup1()">x</button></p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<header id="patform">
+    <div class="box1">
+
+        <form action="/" method="POST" class="box2">
+            <h3>PATIENT LOGIN</h3>
+         
+            <input type="text" id="id" name="id" placeholder="PATIENT ID" required><br>
+            <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="name" name="name" placeholder="PATIENT NAME" required><br>
+            <input type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" placeholder="PHONE NUMBER" required><br>
+            <input type="submit" value="LOGIN" id="log">
+            <p>Dont have an account? <a href="/pregister">REGISTER</a> </p>
+        </form>
+    </div>
+</header>
+
+<header id="docform">
+    <div class="box1">
+        <form action="/" method="POST" class="box2">
+            <h3>DOCTOR LOGIN</h3>
+
+            <input type="text" id="id" name="id" placeholder="ID" required><br>
+            <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="dname" name="dname" placeholder="DNAME" required><br>
+            <input type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" placeholder="PHONE NUMBER" required><br>
+            <input type="submit" value="LOGIN" id="log">
+
+            <p>Dont have an account? <a href="/dregister">REGISTER</a> </p>
+
+        </form>
+    </div>
+</header>
+
+<image src="{{ url_for('static', filename='images/img4.png' )}}" width=100% height=100% z-index=-1 position=absolute />
+<script>
+    let patient = document.getElementById("patform");
+    let btn = document.getElementById("p1");
+    let doctor = document.getElementById("docform");
+    function pat() {
+        doctor.classList.remove("open")
+        patient.classList.add("open")
+    }
+ 
+    function doc() {
+        patient.classList.remove("open")
+        doctor.classList.add("open")
+    }
+ 
+    function closepopup1() {
+        btn.classList.add("opens")
+    }
+
+</script>
+
+
+{% endblock body %}

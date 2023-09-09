@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style8.css') }}">
+
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/dhome">HOME</a></li>
+                <!-- <li><a href="/dochospital">HOSPITAL</a></li> -->
+                <li><a href="/dprofile">PROFILE</a></li>
+                <li><a href="/appointments">APPOINTMENTS</a></li>
+                <li><a href="/patientrecord">PATIENT RECORDS</a></li>
+                <li id="out"><a href="/logout" id="aout">LOGOUT</a></li>
+
+
+                </div>
+                </li>
+            </ul>
+        </nav>
+
+        {% with messages=get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+
+        <p id="p1">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <header id="editform">
+            <div class="box1">
+                <button id="b1" onclick="closepopup()">x</button>
+
+                <form action="/dprofile" method="POST" class="box2">
+
+                    <h4>UPDATE DETAILS</h4>
+                    <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="dname" name="dname" value={{item.dname}} required><br>
+                    <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="gender" name="gender" value={{item.gender}} required><br>
+                    <input class="inp" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" type="text" id="specialization" name="specialization"
+                        value={{item.specialization}} required><br>
+                    <input class="inp" type="number" id="age" name="age" value={{item.age}} required><br>
+                    <input class="inp" type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" value={{item.phno}} required><br>
+                    <input class="inp" type="number" id="fd_hid" name="fd_hid" value={{item.fd_hid}} required><br>
+
+                    <input type="submit" id="log" value="UPDATE">
+
+                </form>
+            </div>
+        </header>
+
+
+
+        <div class="container">
+
+            <div class="box4">
+                <div>DOCTOR ID:</div>
+                <div>DOCTOR NAME :</div>
+                <div>GENDER:</div>
+                <div>SPECIALIZATION:</div>
+                <div>AGE:</div>
+                <div>PHONE NUMBER:</div>
+            </div>
+
+            {% for item in query %}
+            <div class="box5">
+                <div>{{item.id}}</div>
+                <div> {{item.dname}} </div>
+                <div> {{item.gender}}</div>
+                <div> {{item.specialization}}</div>
+                <div>{{item.age}}</div>
+                <div>{{item.phno}}</div>
+            </div>
+
+
+            <div>
+                <button class="edit" onclick="edit()">EDIT</button>
+                <!-- <button id="delete" onclick="del()">DELETE</button> -->
+                <a href="/ddelete/{{item.id}}"><button onclick="return confirm('Are you sure to delete the data');"
+                        class="edit">DELETE</button></a>
+
+
+            </div>
+            {% endfor %}
+        </div>
+
+        <script>
+            let patient = document.getElementById("editform");
+            let doctor = document.getElementById("delform");
+            function edit() {
+                patient.classList.add("open")
+            }
+            function closepopup() {
+                patient.classList.remove("open")
+            }
+
+        </script>
+
+    </body>
+
+</html>

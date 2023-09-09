@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style5.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/dochospital">HOSPITAL</a></li> 
+            <li><a href="/login">DOCTOR</a></li>
+            <li><a href="/plogin">PATIENT</a></li> 
+
+
+
+        </ul>
+    </nav>
+
+
+
+    <div class="box1">
+        <form action="/login" method="POST" class="box2">
+            <h3>DOCTOR LOGIN</h3>
+            <input type="text" id="id" name="id" placeholder="ID" required><br>
+            <input type="text" pattern="[a-zA-Z\s.]{1,25}" title="special characters and numbers are invalid" id="dname" name="dname" placeholder="DNAME" required><br>
+            <input type="text" pattern="[0-9]{10}" title="enter the 10 digit phone number" id="phno" name="phno" placeholder="PHONE NUMBER" required><br>
+            <input type="submit" value="LOGIN" id="log">
+            {% with messages=get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+  <p>Dont have an account? <a href="/dregister">REGISTER</a> </p>
+
+        </form>
+    </div>
+</body>
+
+</html>

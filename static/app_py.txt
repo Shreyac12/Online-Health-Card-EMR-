@@ -1,0 +1,131 @@
+from flask import Flask,render_template,request,redirect,url_for,flash,session
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine 
+# from sqlalchemy import rows
+from sqlalchemy.orm import scoped_session,sessionmaker
+import MySQLdb
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:123456@localhost/users'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']='False'
+app.config['SECRET_KEY']='secret'
+# engine=create_engine("mysql+pymysql://root:123456@localhost/users")
+# db=scoped_session(sessionmaker(bind=engine))
+
+
+
+
+db=SQLAlchemy(app)
+
+
+class demo(db.Model):
+     id=db.Column(db.Integer,primary_key=True)
+     name=db.Column(db.String(10))
+     gender=db.Column(db.String(10))
+     email=db.Column(db.String(20))
+
+     def __init__(self,name,gender,email):
+         self.name=name
+         self.gender=gender
+         self.email=email
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/',methods=['GET','POST'])
+def index():
+    if request.method=='POST':
+        name=request.form['name']
+        gender=request.form['gender']
+        email=request.form['email']
+        # query=db.engine.execute(f"INSERT INTO `demo`(`name`,`gender`,`email`)VALUES ('{name}','{gender}','{email}')")
+        # flash('info is stored successfully')
+        # md=db.execute("UPDATE demo SET name='Shreyacr' WHERE name=:name",{"name":name}).fetchone()
+        # md=session.query(demo).filter(demo.id==1).fetchone()
+        # md.name="user"
+        # session.commit()
+        # if md is not None:
+        #     return redirect('/home')
+
+        md=demo(name,gender,email)
+        db.session.add(md)
+        db.session.commit()
+        return redirect('/home')
+            
+    return render_template('index.html')
+
+if __name__=="__main__":
+    app.run(debug=True)
+
+# from flask import Flask,request,render_template,session
+# from flask_sqlalchemy import SQLAlchemy
+
+# app=Flask(__name__)
+
+# app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:123456@localhost/Practice1'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS']='False'
+# app.config['SECRET_KEY']='secret'
+
+# db=SQLAlchemy(app)
+
+# class demo1(db.Model):
+#     id=db.Column(db.Integer,primary_key=True)
+#     name=db.Column(db.String(10))
+#     gender=db.Column(db.String(10))
+#     email=db.Column(db.String(20))
+
+#     def __init__(self,name,gender,email):
+#         self.name=name
+#         self.gender=gender
+#         self.email=email
+
+#     def __repr__(self):
+#         return f' {self.name} - {self.gender} - {self.email} '
+
+# @app.route('/',methods=['POST','GET'])
+# def login():
+#     if request.method=='POST':
+#          name=request.form['name']
+#          gender=request.form['gender']
+#          email=request.form['email']
+#          if request.form['name']=='name':
+#             session['demo1']=request.form['name']
+#             return 'success'
+
+#     return render_template('login.html')
+
+# @app.route('/register')
+# def register():
+#     return render_template('register.html')
+
+
+# @app.route('/home')
+# def home():
+#     return render_template('home.html')
+
+# @app.route('/login_validation',methods=['POST'])
+# def login_validation():
+#     if request.method==['POST']:
+#         name=request.form['name']
+#         gender=request.form['gender']
+#         email=request.form['email']
+#         if request.form['name']=='name':
+#             session['demo1']=request.form['name']
+#             return 'success'
+#     # demo1=[x for  x in demo1 if x.name==name]
+    
+
+#     # return 'The name is {} and the email is {}'.format(name,email)
+#     return 'fail'
+
+
+# if __name__=="__main__":
+#     app.run(debug=True)
+
+

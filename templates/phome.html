@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block css %}
+
+    {% endblock css %}
+    <title>
+
+        {% block title %}
+
+        {% endblock title %}
+
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style15.css') }}">
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/phome">HOME</a></li>
+            <li><a href="/pprofile">PROFILE</a></li>
+            <li><a href="/hospital">BOOK</a></li>
+            <li><a href="/history">APPOINTMENTS</a></li>
+            <li><a href="/medical">MEDICAL RECORDS</a></li> 
+            <li id="out"><a href="/logout" id="aout">LOGOUT</a></li> 
+            
+                </div>
+            </li>
+        </ul>
+    </nav>
+<image src="{{ url_for('static', filename='images/img4.png' )}}" width=100% height=100%/>
+
+    <!-- <h1>WELCOME {{patientname}}</h1> -->
+
+    {% block body %}
+    
+{{patientname}}
+    {% endblock body %}
+  
+</body>
+</html>

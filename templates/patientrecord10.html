@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style13.css') }}">
+
+</head>
+
+<body>
+    <nav class="navbar" id="navbars">
+        <ul>
+            <li><a href="/dhome">HOME</a></li>
+            <li><a href="/dprofile">PROFILE</a></li>
+            <li><a href="/appointments">APPOINTMENTS</a></li>
+            <li><a href="/patientrecord">PATIENT RECORDS</a></li>
+            <li id="out"><a href="/logout" id="aout">LOGOUT</a></li>
+        </ul>
+    </nav>
+    <header id="dispform" class="blue">
+        <div class="medbox">
+            <form action="" method="POST" class="">
+                <input type="number" class="inp1" id="id" name="id" placeholder="PATIENT ID" required>
+                <button class="inp1" id="adddoc" onclick="popup()">DISPLAY</button>
+            </form>
+        </div>
+    </header>
+    <main id="displayed">
+        {% with messages=get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p id="p1">{{ message }} </p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <table id="customers" class="blur">
+            <tr>
+                <th>mrid</th>
+                <th>date</th>
+                <th>disease</th>
+                <th>drugs</th>
+                <th>diagnosis</th>
+
+            </tr>
+
+            {% for item in query %}
+
+            <tr>
+                <td> {{item.mrid}} </td>
+                <td> {{item.drugs}} </td>
+                <td> {{item.date}} </td>
+                <td> {{item.disease}} </td>
+                <td> {{item.diagnosis}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button id="insertn" onclick="popup1()" class="blue">INSERT NEW RECORD</button>
+    </main>
+
+
+
+    <footer id="insert">
+        <div class="box1">
+
+
+            <button id="b1" onclick="closepopup()">x</button>
+
+
+            <form action="/patientrecord" method="POST" class="box2">
+
+                <h3>MEDICAL RECORD</h3>
+
+                <input class="inp" type="date" name="date" placeholder="DATE" required><br>
+                <input class="inp" type="text" name="disease" placeholder="DIESEASE" required><br>
+                <input class="inp" type="text" name="drugs" placeholder="DRUGS" required><br>
+                <input class="inp" type="text" name="diagnosis" placeholder="DIAGNOSIS" required><br>
+                <input class="inp" type="number" name="fm_pid" placeholder="PATIENTID" required><br>
+                <input id="log" type="submit" value="INSERT">
+
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        let doctor = document.getElementById("dispform");
+        let blue = document.getElementById("customers");
+        let blue1 = document.getElementById("navbars");
+        let blue2 = document.getElementById("insertn");
+        let blue3 = document.getElementById("dispform");
+        let foot = document.getElementById("insert");
+        function popup() {
+            doctor.classList.remove("open")
+        }
+        function closepopup() {
+            doctor.classList.remove("open")
+        }
+        function popup1() {
+
+            foot.classList.add("open")
+            blue.classList.add("active-popup")
+            blue1.classList.add("active-popup")
+            blue2.classList.add("active-popup")
+            blue3.classList.add("active-popup")
+
+
+        }
+        function closepopup() {
+            foot.classList.remove("open")
+            blue.classList.remove("active-popup")
+            blue1.classList.remove("active-popup")
+            blue2.classList.remove("active-popup")
+            blue3.classList.remove("active-popup")
+        }
+    </script>
+</body>
+
+</html>

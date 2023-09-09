@@ -1,0 +1,107 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    visibility: hidden;
+}
+
+.open {
+    visibility: visible;
+}
+
+form {
+    box-shadow: 0 20px 20px rgba(11, 23, 109, 0.663), 0 20px 15px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: rgb(204, 204, 204);
+    width: 400px;
+    height: 480px;
+
+}
+
+.box1 {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    margin: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+label {
+    margin: 10px;
+    width: 300px;
+    height: 45px;
+    border-radius: 3px;
+}
+
+input {
+    border: 1px solid grey;
+    margin: 10px;
+    width: 300px;
+    height: 45px;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+input:hover {
+    border: 3.5px solid #1c617e;
+}
+
+input:active {
+    border: 3.5px solid #1c617e;
+}
+
+#log {
+    width: 310px;
+    height: 48px;
+    border-radius: 3px;
+    background-color: #1c617e;
+    color: white;
+    border: 1px solid #1c617e;
+    font-size: 15px;
+}
+
+#log:hover {
+    background-color: #15866a;
+}
+
+#p1 {
+    background-color: gray;
+    border: 1px solid grey;
+    position: absolute;
+    top: 60px;
+    font-size: 20px;
+    width: 50%;
+    height: 30px;
+    border-radius: 3px;
+    visibility: visible;
+}
+
+#bt9 {
+    border: 1px solid grey;
+    background-color: gray;
+    height: 25px;
+    float: right;
+    font-size: 20px;
+    visibility: visible;
+}
+
+.opens {
+    visibility: hidden;
+}
